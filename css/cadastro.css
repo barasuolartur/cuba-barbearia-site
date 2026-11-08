@@ -1,0 +1,108 @@
+/* ==========================================================
+   CUBA BARBEARIA | cadastro.css
+   Independente do style.css do site (tem as próprias variáveis).
+   Mobile primeiro; o bloco @media no fim adapta para computador.
+   ========================================================== */
+
+:root {
+  --bg: #07080c;
+  --bg-2: #0e1018;
+  --text: #f2f3f7;
+  --muted: #a3a8b8;
+  --red: #d8242f;
+  --red-dark: #a8151f;
+  --blue: #1f3fbf;
+  --ok: #3ddc97;
+  --radius: 12px;
+  --font-title: "Big Shoulders Display", Impact, sans-serif;
+  --font-body: "Barlow", system-ui, sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; }
+body { min-height: 100svh; background: var(--bg); color: var(--text); font: 400 1rem/1.5 var(--font-body); -webkit-tap-highlight-color: transparent; }
+a { color: inherit; }
+:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
+[hidden] { display: none !important; }
+
+/* Fundo */
+.auth {
+  position: relative; min-height: 100svh; display: grid; place-items: start center; padding: 4.5rem 1rem 2rem; overflow: hidden; perspective: 1200px;
+  background: radial-gradient(circle at 85% 8%, rgba(31,63,191,.35), transparent 45%), radial-gradient(circle at 5% 100%, rgba(216,36,47,.28), transparent 45%);
+}
+.auth__back { position: absolute; top: 1.2rem; left: 1.2rem; color: var(--muted); text-decoration: none; font-weight: 500; transition: color .2s; }
+.auth__back:hover { color: #fff; }
+
+/* Cartão */
+.auth__card {
+  position: relative; width: 100%; max-width: 460px; padding: 2rem 1.4rem 1.6rem; border-radius: 18px; overflow: hidden;
+  background: linear-gradient(160deg, rgba(21,24,38,.92), rgba(10,12,19,.95)); border: 1px solid rgba(255,255,255,.1);
+  box-shadow: 0 30px 70px rgba(0,0,0,.65); backdrop-filter: blur(10px);
+  transform: rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)); transition: transform .15s ease-out;
+  animation: entrar .9s cubic-bezier(.2,.8,.2,1) both;
+}
+.auth__card::before { content: ""; position: absolute; inset: 0 0 auto; height: 4px; background: linear-gradient(90deg, var(--red) 33%, #fff 33% 66%, var(--blue) 66%); }
+.auth__head { display: flex; gap: 1rem; align-items: center; margin-bottom: 1.6rem; }
+.auth__head h1 { font: 900 2.6rem/1 var(--font-title); text-transform: uppercase; }
+.auth__head p { color: var(--muted); font-size: .95rem; margin-top: .3rem; }
+.auth__pole { flex: none; width: 16px; height: 70px; border-radius: 8px; box-shadow: 0 0 24px rgba(216,36,47,.45);
+  background: repeating-linear-gradient(-45deg, var(--red) 0 12px, #fff 12px 24px, var(--blue) 24px 36px, #fff 36px 48px); background-size: 68px 68px; animation: girar 1.6s linear infinite; }
+
+/* Campos */
+form { display: grid; gap: 1rem; }
+.field { display: grid; gap: .35rem; opacity: 0; animation: subir .6s both; }
+.field:nth-child(1) { animation-delay: .25s; } .field:nth-child(2) { animation-delay: .32s; } .field:nth-child(3) { animation-delay: .39s; }
+.field:nth-child(4) { animation-delay: .46s; } .field:nth-child(5) { animation-delay: .53s; }
+label { color: var(--muted); font-size: .92rem; }
+input[type="text"], input[type="tel"], input[type="email"], input[type="password"] {
+  width: 100%; padding: .9rem 1rem; border-radius: var(--radius); border: 1px solid rgba(255,255,255,.14); background: #0d0f17; color: var(--text); font: inherit; font-size: 1rem; transition: border-color .2s, box-shadow .2s;
+}
+input:focus { border-color: var(--blue); outline: none; box-shadow: 0 0 0 3px rgba(31,63,191,.35); }
+.field.is-invalid input { border-color: var(--red); box-shadow: 0 0 0 3px rgba(216,36,47,.2); }
+.field__erro { min-height: 1.1rem; color: #ff6b74; font-size: .82rem; }
+.field__senha { position: relative; }
+.field__senha input { padding-right: 5.2rem; }
+.field__ver { position: absolute; right: .5rem; top: 50%; translate: 0 -50%; padding: .4rem .7rem; border: 0; border-radius: 8px; background: rgba(255,255,255,.08); color: var(--muted); font: 500 .82rem var(--font-body); cursor: pointer; }
+.meter { display: block; height: 4px; border-radius: 4px; background: rgba(255,255,255,.08); overflow: hidden; }
+.meter i { display: block; height: 100%; width: 0; border-radius: 4px; background: var(--red); transition: width .3s, background .3s; }
+
+.check { display: flex; gap: .7rem; align-items: flex-start; font-size: .9rem; line-height: 1.4; cursor: pointer; }
+.check input { flex: none; width: 1.2rem; height: 1.2rem; margin-top: .1rem; accent-color: var(--red); }
+
+/* Botão e mensagens */
+.btn {
+  display: inline-block; width: 100%; padding: 1rem 1.6rem; border: 0; border-radius: var(--radius); text-align: center; text-decoration: none; cursor: pointer;
+  background: linear-gradient(135deg, var(--red), var(--red-dark)); color: #fff; font: 600 1.05rem var(--font-body);
+  box-shadow: 0 8px 24px rgba(216,36,47,.4); transition: transform .2s, box-shadow .2s, opacity .2s;
+}
+.btn:hover { transform: translateY(-2px); }
+.btn:active { transform: scale(.98); }
+.btn[disabled] { opacity: .6; cursor: wait; transform: none; }
+.form__msg { min-height: 1.4rem; font-size: .92rem; text-align: center; color: #ff6b74; }
+.form__msg.is-info { color: var(--muted); }
+.auth__foot { margin-top: 1.4rem; text-align: center; color: var(--muted); font-size: .95rem; }
+.auth__foot a { color: #fff; font-weight: 600; }
+
+/* Sucesso */
+.ok { display: grid; justify-items: center; gap: .8rem; padding: 1.5rem 0 .5rem; text-align: center; animation: subir .6s both; }
+.ok svg { width: 84px; height: 84px; fill: none; stroke: var(--ok); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+.ok circle { stroke-dasharray: 151; stroke-dashoffset: 151; animation: tracar .7s .1s forwards; }
+.ok path { stroke-dasharray: 40; stroke-dashoffset: 40; animation: tracar .5s .7s forwards; }
+.ok h2 { font: 900 2.2rem var(--font-title); text-transform: uppercase; }
+.ok p { color: var(--muted); max-width: 22rem; }
+.ok .btn { margin-top: .6rem; }
+
+/* Animações */
+@keyframes entrar { from { opacity: 0; transform: translateY(40px) rotateX(-14deg); } }
+@keyframes subir  { from { opacity: 0; translate: 0 16px; } to { opacity: 1; translate: 0 0; } }
+@keyframes girar  { to { background-position: 0 68px; } }
+@keyframes tracar { to { stroke-dashoffset: 0; } }
+
+/* Computador */
+@media (min-width: 900px) {
+  .auth { place-items: center; padding-block: 3rem; }
+  .auth__card { padding: 2.4rem 2.2rem 2rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition-duration: .01ms !important; }
+  .field { opacity: 1; }
+}
