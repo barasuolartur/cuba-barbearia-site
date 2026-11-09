@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#07080c">
+  <title>Minha conta | Cuba Barbearia</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;900&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" 
+    href="../css/painel.css">
+
+    <script src="../js/painel.js"></script>
+
+
+
+
+
+</head>
+<body>
+
+  <div class="painel">
+    <header class="topo">
+      <a class="topo__voltar" href="../index.html">&larr; Site</a>
+      <span class="topo__logo">Cuba</span>
+      <button class="topo__sair" id="sair" type="button">Sair</button>
+    </header>
+
+    <p class="aviso" id="aviso" role="alert" hidden></p>
+
+    <main class="grade">
+      <div class="col">
+
+        <!-- PERFIL -->
+        <section class="card perfil" style="--i:0">
+          <label class="perfil__foto" title="Trocar foto">
+            <span class="perfil__anel"><span class="av" id="avatar">?</span></span>
+            <input id="arq-foto" type="file" accept="image/*" hidden>
+            <span class="perfil__trocar">Trocar foto</span>
+          </label>
+          <div>
+            <p class="perfil__ola" id="saudacao">Olá,</p>
+            <h1 id="nome">Carregando...</h1>
+            <p class="perfil__email" id="email"></p>
+          </div>
+          <p class="perfil__msg" id="msg-foto" role="status"></p>
+        </section>
+
+        <!-- RESUMO -->
+        <section class="stats" style="--i:1" aria-label="Resumo">
+          <div class="stat"><b id="st-proximo">-</b><span>Próximo</span></div>
+          <div class="stat"><b id="st-total">-</b><span>Agendamentos</span></div>
+          <div class="stat"><b id="st-visitas">-</b><span>Visitas</span></div>
+        </section>
+
+        <a class="btn novo" id="novo" href="../index.html#agendamento">Novo agendamento</a>
+
+        <!-- DADOS DA CONTA -->
+        <section class="card dados" style="--i:5">
+          <h2 class="titulo">Meus dados</h2>
+          <form id="form-dados" novalidate>
+            <div class="field">
+              <label for="f-nome">Nome completo</label>
+              <input id="f-nome" name="nome" type="text" autocomplete="name" required>
+            </div>
+            <div class="field">
+              <label for="f-tel">WhatsApp</label>
+              <input id="f-tel" name="telefone" type="tel" inputmode="tel" autocomplete="tel" placeholder="(61) 99999-9999">
+            </div>
+            <button class="btn btn--ghost" type="submit" id="btn-salvar">Salvar dados</button>
+            <p class="form__msg" id="msg-dados" role="status"></p>
+          </form>
+        </section>
+      </div>
+
+      <div class="col">
+        <!-- PRÓXIMO AGENDAMENTO -->
+        <section class="card proximo tilt" id="bloco-proximo" style="--i:2">
+          <p class="proximo__rotulo">Seu próximo horário</p>
+          <div id="proximo">Carregando...</div>
+        </section>
+
+        <!-- LISTA DE PRÓXIMOS -->
+        <section class="card" style="--i:3">
+          <h2 class="titulo">Próximos agendamentos</h2>
+          <ul class="lista" id="lista-proximos"></ul>
+        </section>
+
+        <!-- HISTÓRICO -->
+        <section class="card" style="--i:4">
+          <h2 class="titulo">Histórico</h2>
+          <ul class="lista" id="lista-historico"></ul>
+        </section>
+      </div>
+    </main>
+  </div>
+
+</body>
+</html>
